@@ -172,16 +172,14 @@ $$
 我们构造：
 $$
 \widehat A_t(y)
-=
-\alpha_t^{(R)}(y)\,R(x,y) \;-\; \sum_{s=t}^{L}\alpha_t^{(s)}(y)\,\beta_t^{(s)}.
+=\alpha_t^{(R)}(y)\,R(x,y) \;-\; \sum_{s=t}^{L}\alpha_t^{(s)}(y)\,\beta_t^{(s)}.
 \tag{HB}
 $$
 于是分层 baseline 的 token 梯度估计器为：
 $$
 \boxed{
 \hat g_t(y)
-=
-\rho_{\le t}(y)\;s_t(y)\;
+=\rho_{\le t}(y)\;s_t(y)\;
 \left(
 \alpha_t^{(R)}(y)\,R(x,y) \;-\; \sum_{s=t}^{L}\alpha_t^{(s)}(y)\,\beta_t^{(s)}
 \right).
@@ -201,12 +199,10 @@ $$
 无偏性要证明：
 $$
 \mathbb E_{\pi_b}[\hat g_t]
-=
-\mathbb E_{\pi_b}\big[\rho_{\le t}s_t\alpha_t^{(R)}R\big]
+=\mathbb E_{\pi_b}\big[\rho_{\le t}s_t\alpha_t^{(R)}R\big]
 -
 \sum_{s=t}^L \mathbb E_{\pi_b}\big[\rho_{\le t}s_t\alpha_t^{(s)}\beta_t^{(s)}\big]
-=
-g_t.
+=g_t.
 $$
 其中第一项正是 $g_t$（见第 2 节）。所以只需证明：
 
@@ -234,14 +230,11 @@ $$
 对任何给定 $(x,y_{\le t})$ 与任意 $s>t$：
 $$
 \mathbb E_{y_{t+1:s}\sim\pi_b(\cdot\mid x,y_{\le t})}\big[\alpha_t^{(s)}(y)\mid x,y_{\le t}\big]
-=
-\sum_{y_{t+1:s}}
+=\sum_{y_{t+1:s}}
 \pi_b(y_{t+1:s}\mid x,y_{\le t})\,
 \frac{\pi_\theta(y_{t+1:s}\mid x,y_{\le t})}{\pi_b(y_{t+1:s}\mid x,y_{\le t})}
-=
-\sum_{y_{t+1:s}} \pi_\theta(y_{t+1:s}\mid x,y_{\le t})
-=
-1.
+=\sum_{y_{t+1:s}} \pi_\theta(y_{t+1:s}\mid x,y_{\le t})
+=1.
 \tag{IS1}
 $$
 当 $s=t$ 时，$\alpha_t^{(t)}\equiv 1$，也显然成立。
@@ -254,8 +247,7 @@ $$
 
 $$
 \mathbb E_{\pi_b}\big[\rho_{\le t}s_t\alpha_t^{(s)}\beta_t^{(s)}\big]
-=
-\mathbb E_{y_{<t}\sim\pi_b}\left[
+=\mathbb E_{y_{<t}\sim\pi_b}\left[
 \beta_t^{(s)}(x,y_{<t})\cdot
 \mathbb E_{y_t\sim\pi_b(\cdot\mid x,y_{<t})}
 \left[
@@ -276,8 +268,7 @@ $$
 于是上式化简为：
 $$
 \mathbb E_{\pi_b}\big[\rho_{\le t}s_t\alpha_t^{(s)}\beta_t^{(s)}\big]
-=
-\mathbb E_{y_{<t}\sim\pi_b}\left[
+=\mathbb E_{y_{<t}\sim\pi_b}\left[
 \beta_t^{(s)}(x,y_{<t})
 \cdot
 \mathbb E_{y_t\sim\pi_b(\cdot\mid x,y_{<t})}
@@ -290,18 +281,15 @@ $$
 把前缀 ratio 拆开：
 $$
 \frac{\pi_\theta(y_{\le t}\mid x)}{\pi_b(y_{\le t}\mid x)}
-=
-\frac{\pi_\theta(y_{<t}\mid x)}{\pi_b(y_{<t}\mid x)}\cdot
+=\frac{\pi_\theta(y_{<t}\mid x)}{\pi_b(y_{<t}\mid x)}\cdot
 \frac{\pi_\theta(y_t\mid x,y_{<t})}{\pi_b(y_t\mid x,y_{<t})}
-=
-\rho_{<t}(y)\cdot \rho_t(y).
+=\rho_{<t}(y)\cdot \rho_t(y).
 $$
 因此内层对 $y_t$ 的期望变成：
 $$
 \mathbb E_{y_t\sim\pi_b}
 \left[\rho_{<t}\rho_t s_t\right]
-=
-\rho_{<t}\cdot
+=\rho_{<t}\cdot
 \mathbb E_{y_t\sim\pi_b}
 \left[
 \frac{\pi_\theta(y_t\mid x,y_{<t})}{\pi_b(y_t\mid x,y_{<t})}
@@ -313,10 +301,8 @@ $$
 $$
 \rho_{<t}\cdot
 \sum_{y_t}\pi_\theta(y_t\mid x,y_{<t})\nabla_\theta\log\pi_\theta(y_t\mid x,y_{<t})
-=
-\rho_{<t}\cdot 0
-=
-0
+=\rho_{<t}\cdot 0
+=0
 $$
 其中用到了 (S0)。因此整个外层期望为 0，Lemma 1 证毕。
 
@@ -327,8 +313,7 @@ $$
 由 Lemma 1：
 $$
 \mathbb E_{\pi_b}[\hat g_t]
-=
-\mathbb E_{\pi_b}[\rho_{\le t}s_t\alpha_t^{(R)}R]
+=\mathbb E_{\pi_b}[\rho_{\le t}s_t\alpha_t^{(R)}R]
 =g_t,
 $$
 所以分层 baseline 不改变梯度的期望（无偏）。
@@ -381,25 +366,21 @@ $$
 回忆估计器（式 (E)）：
 $$
 \hat g_t(y)
-=
-\rho_{\le t}(y)\;s_t(y)\;
+=\rho_{\le t}(y)\;s_t(y)\;
 \Delta_t(y),
 $$
 其中我们把标量残差记为
 $$
 \Delta_t(y)
-:=
-\alpha_t^{(R)}(y)\,R(x,y) \;-\; \sum_{s=t}^{L}\alpha_t^{(s)}(y)\,\beta_t^{(s)}.
+:=\alpha_t^{(R)}(y)\,R(x,y) \;-\; \sum_{s=t}^{L}\alpha_t^{(s)}(y)\,\beta_t^{(s)}.
 \tag{Delta}
 $$
 
 由于 $\rho_{\le t}$ 与 $\Delta_t$ 都是标量，$s_t$ 是向量，所以范数平方满足：
 $$
 \|\hat g_t\|^2
-=
-\|\rho_{\le t}\,s_t\,\Delta_t\|^2
-=
-(\rho_{\le t})^2\;\|s_t\|^2\;(\Delta_t)^2.
+=\|\rho_{\le t}\,s_t\,\Delta_t\|^2
+=(\rho_{\le t})^2\;\|s_t\|^2\;(\Delta_t)^2.
 \tag{norm}
 $$
 这是唯一用到的线性代数事实：$\|a v\|^2=a^2\|v\|^2$。
@@ -407,8 +388,7 @@ $$
 对 $y\sim\pi_b$ 取期望：
 $$
 \mathbb E[\|\hat g_t\|^2]
-=
-\mathbb E_{y\sim\pi_b(\cdot\mid x)}
+=\mathbb E_{y\sim\pi_b(\cdot\mid x)}
 \left[
 \left(\frac{\pi_\theta(y_{\le t}\mid x)}{\pi_b(y_{\le t}\mid x)}\right)^2
 \cdot
@@ -426,8 +406,7 @@ $$
 $$
 \boxed{
 \mathrm{Var}(\hat g_t)
-=
-\mathbb E_{\pi_b}
+=\mathbb E_{\pi_b}
 \left[
 \left(\rho_{\le t}\right)^2 \|s_t\|^2
 \left(
@@ -455,18 +434,15 @@ $$
 严格地说：
 $$
 \mathrm{Var}(\hat g)
-=
-\mathrm{Var}\left(\sum_{t=1}^L \hat g_t\right)
-=
-\sum_{t=1}^L \mathrm{Var}(\hat g_t)
+=\mathrm{Var}\left(\sum_{t=1}^L \hat g_t\right)
+=\sum_{t=1}^L \mathrm{Var}(\hat g_t)
 + 2\sum_{1\le t<s\le L}\mathrm{Cov}(\hat g_t,\hat g_s),
 \tag{Vsum}
 $$
 其中协方差（对向量）用 trace 形式等价地写成
 $$
 \mathrm{Cov}(\hat g_t,\hat g_s)
-=
-\mathbb E\big[\hat g_t^\top \hat g_s\big]
+=\mathbb E\big[\hat g_t^\top \hat g_s\big]
 -
 \mathbb E[\hat g_t]^\top\mathbb E[\hat g_s].
 $$
@@ -493,8 +469,7 @@ $$
 假设存在常数 $C$（或随 $t$ 变化的 $C_t$），使得
 $$
 \mathbb E\Big[s_t(y)^\top s_s(y)\Big]
-=
-\delta_{ts}\,C
+=\delta_{ts}\,C
 \quad(\text{或 }\delta_{ts}C_t),
 \tag{B}
 $$
@@ -578,16 +553,14 @@ $$
 $$
 \frac{\partial}{\partial \beta_t^{(s)}}
 \mathbb E\Big[w_t(z_t-\sum_r \phi_{t,r}\beta_t^{(r)})^2\Big]
-=
-\mathbb E\Big[ -2 w_t \phi_{t,s}\,(z_t-\sum_r \phi_{t,r}\beta_t^{(r)})\Big]
+=\mathbb E\Big[ -2 w_t \phi_{t,s}\,(z_t-\sum_r \phi_{t,r}\beta_t^{(r)})\Big]
 =0.
 $$
 
 等价于 **正规方程（normal equations）**：
 $$
 \mathbb E\Big[w_t\phi_{t,s}\,z_t\Big]
-=
-\sum_{r=t}^L \mathbb E\Big[w_t\phi_{t,s}\phi_{t,r}\Big]\beta_t^{(r)}.
+=\sum_{r=t}^L \mathbb E\Big[w_t\phi_{t,s}\phi_{t,r}\Big]\beta_t^{(r)}.
 \tag{NE}
 $$
 
@@ -737,8 +710,7 @@ $$
 对每个样本与时间步，计算分层残差（对应式 (HB)）：
 $$
 \Delta_{i,t}
-=
-\alpha_t^{(R)}(i)\,R_i
+=\alpha_t^{(R)}(i)\,R_i
 -
 \sum_{s=t}^L \alpha_t^{(s)}(i)\,\beta_t^{(s)}.
 $$
@@ -746,8 +718,7 @@ $$
 得到每步权重：
 $$
 w^{\text{PG}}_{i,t}
-=
-\rho_{\le t}^{(i)}\cdot \Delta_{i,t}.
+=\rho_{\le t}^{(i)}\cdot \Delta_{i,t}.
 $$
 
 **实现 policy gradient 的一个关键点**：  
@@ -755,15 +726,13 @@ $$
 
 $$
 \mathcal L(\theta)
-=
--\sum_{i,t}\mathrm{stopgrad}\big(w^{PG}_{i,t}\big)\cdot \log\pi_\theta(y_{i,t}\mid x_i,y_{i,<t}).
+=-\sum_{i,t}\mathrm{stopgrad}\big(w^{PG}_{i,t}\big)\cdot \log\pi_\theta(y_{i,t}\mid x_i,y_{i,<t}).
 $$
 
 这样反向传播得到的梯度就是：
 $$
 \nabla_\theta \mathcal L
-=
--\sum_{i,t} w^{PG}_{i,t}\; \nabla_\theta \log\pi_\theta(y_{i,t}\mid\cdot),
+=-\sum_{i,t} w^{PG}_{i,t}\; \nabla_\theta \log\pi_\theta(y_{i,t}\mid\cdot),
 $$
 与我们推导的 estimator 形式一致。
 
@@ -804,8 +773,7 @@ $$
 - 分层 baseline 的 token 梯度估计器：
   $$
   \hat g_t
-  =
-  \rho_{\le t}s_t
+  =\rho_{\le t}s_t
   \left(
   \alpha_t^{(R)}R - \sum_{s=t}^L \alpha_t^{(s)}\beta_t^{(s)}
   \right)
@@ -813,8 +781,7 @@ $$
 - 其方差（trace variance）：
   $$
   \mathrm{Var}(\hat g_t)
-  =
-  \mathbb E_{\pi_b}
+  =\mathbb E_{\pi_b}
   \left[
   (\rho_{\le t})^2\|s_t\|^2
   \left(
